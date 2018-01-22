@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel='stylesheet' href='/fullcalendar/fullcalendar.css' />
+    <link rel='stylesheet' href='/stylesheets/calendar.css' />
+    <script src='/fullcalendar/lib/jquery.min.js'></script>
+    <script src='/fullcalendar/lib/jquery-ui.min.js'></script>
+    <script src='/fullcalendar/lib/moment.min.js'></script>
+    <script src='/fullcalendar/fullcalendar.js'></script>
+    <script type="text/javascript" src='/JavaScript/calendarJS_employee.js'></script>
+</head>
+
+<body>
+    <div id='wrap'>
+        <div id='new_event'>
+            <div id='new_event-listing'>
+                <h4>Draggable Events</h4>
+                <div class='event'>My Event 1</div>
+                <div class='event'>My Event 2</div>
+                <div class='event'>My Event 3</div>
+                <div class='event'>My Event 4</div>
+                <div class='event'>My Event 5</div>
+            </div>
+            <p>
+                <input type='checkbox' id='drop-remove' checked='checked' />
+                <label for='drop-remove'>remove after drop</label>
+            </p>
+        </div>
+        <div class="container">
+            <div class="calendar_content">
+                <div class="calendar_inner_content">
+                    <div id='calendar'></div>
+                </div>
+            </div>
+        </div>
+        <div style='clear:both'></div>
+    </div>
+</body>
+
+</html>
