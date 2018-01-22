@@ -1,7 +1,7 @@
 #Commands for node setup (localhost:49160)
-docker build -t ygf97/psyduck .
+docker build -t psyduck .
 docker images
-docker run -p 49160:3000 -d ygf97/psyduck
+docker run -p 49160:3000 -d psyduck
 docker ps
 
 #docker logs 5f4a23b64da6
