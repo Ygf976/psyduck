@@ -3,34 +3,23 @@ mongoose.Promise = global.Promise
 const Employee = require('./employee_schema')
 const Manager = require('./manager_schema')
 const call = require('./database_calls')
-
-mongoose.connect('mongodb://localhost/db', {
+const databaseUrl = process.env.MONGO_URI || 'mongodb://localhost/'
+mongoose.connect(databaseUrl, {
   useMongoClient: true
 }, function (err) {
   if (err) {
     throw err
   }
 })
-
-initiateDB()
-  .then(result => console.log('Result' + result))
-  .then(() => mongoose.connection.close())
-  .catch(err => console.error('something went wrong', err)
-  )
-
-async function initiateDB () {
+initiateDB().then(result => console.log('Result' + result)).then(() => mongoose.connection.close()).catch(err => console.error('something went wrong', err))
+async function initiateDB() {
   await Employee.remove()
-
   let managers = await createManagers()
-
   await createEmployees(managers)
-
   return call.getEmployees()
 }
-
-async function createManagers () {
+async function createManagers() {
   await console.log('Wainting for creation of managers ... ')
-
   let John = await new Manager({
     firstname: 'John',
     lastname: 'Doe',
@@ -38,7 +27,6 @@ async function createManagers () {
     password: 'doe',
     numberDaysOff: 50
   })
-
   let Jane = await new Manager({
     firstname: 'Jane',
     lastname: 'Doe',
@@ -47,20 +35,14 @@ async function createManagers () {
     numberDaysOff: 75,
     manager: John._id
   })
-
   John.manager = Jane._id
-
   await John.save()
   await Jane.save()
-
   return [Jane._id, John._id]
 }
-
-async function createEmployees (managers) {
+async function createEmployees(managers) {
   await console.log('Wainting for creation of employees ... ')
-
   let allManagers = await Manager.find()
-
   let manu = await new Employee({
     firstname: 'Emmanuel',
     lastname: 'Coucy',
@@ -75,9 +57,7 @@ async function createEmployees (managers) {
       status: 1
     }]
   })
-
   await allManagers[0].employees.push(manu._id)
-
   let etienne = await new Employee({
     firstname: 'Etienne',
     lastname: 'Gineste',
@@ -93,7 +73,6 @@ async function createEmployees (managers) {
     }]
   })
   await allManagers[1].employees.push(etienne._id)
-
   let yann = await new Employee({
     firstname: 'Yann',
     lastname: 'Giry-Fouquet',
@@ -109,7 +88,6 @@ async function createEmployees (managers) {
     }]
   })
   await allManagers[1].employees.push(yann._id)
-
   let silouane = await new Employee({
     firstname: 'Silouane',
     lastname: 'Galinou',
@@ -125,10 +103,8 @@ async function createEmployees (managers) {
     }]
   })
   await allManagers[0].employees.push(silouane._id)
-
   await allManagers[0].save()
   await allManagers[1].save()
-
   await etienne.save()
   await manu.save()
   await silouane.save()

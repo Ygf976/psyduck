@@ -1,0 +1,27 @@
+version: "3"
+services:
+  app:
+    restart : always
+    build: .
+    environment:
+      - PORT=3000
+      - MONGO-URI=mongodb://mongo/db
+    links:
+      - mongo
+      
+      
+      
+  reverseproxy:
+    build:
+      context: ./config/reverse-proxy
+      dockerfile : Dockerfile
+    restart: always
+    container_name: reverseproxy
+    ports: 
+      - 8080:8080
+    depends_on:
+      - app
+  mongo:
+    container_name: mongodb
+    image: mongo
+    
