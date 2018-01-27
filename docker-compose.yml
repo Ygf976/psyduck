@@ -8,8 +8,9 @@ services:
       - MONGO-URI=mongodb://mongo/db
     links:
       - mongo
+   
       
-      
+  
       
   reverseproxy:
     build:
@@ -23,5 +24,9 @@ services:
       - app
   mongo:
     container_name: mongodb
-    image: mongo
+    image: mongo   
+    ports:
+      - "27017:27017"
+      
+    
     

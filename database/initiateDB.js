@@ -3,7 +3,7 @@ mongoose.Promise = global.Promise
 const Employee = require('./employee_schema')
 const Manager = require('./manager_schema')
 const call = require('./database_calls')
-const databaseUrl = process.env.MONGO_URI || 'mongodb://localhost/'
+const databaseUrl = 'mongodb://mongo/test'
 mongoose.connect(databaseUrl, {
   useMongoClient: true
 }, function (err) {

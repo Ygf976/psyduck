@@ -1,5 +1,4 @@
 {
-
   "name": "psyduck",
   "version": "0.0.0",
   "private": true,
@@ -22,5 +21,4 @@
     "serve-favicon": "~2.4.5",
     "util": "^0.10.3"
   }
-
 }

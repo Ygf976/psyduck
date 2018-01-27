@@ -1,15 +1,15 @@
 var express = require('express')
 var router = express.Router()
 const User = require('../database/database_calls')
-
 /* GET Login page. */
 router.get('/', (req, res, next) => {
-  res.render('login', { title: 'Login' })
+  res.render('login', {
+    title: 'Login'
+  })
 })
-
 // POST route for updating data
-router.post('/', async (req, res, next) => {
-  if (req.body.loglogin && req.body.logpassword) {
+router.post('/', async(req, res, next) => {
+  /*if (req.body.loglogin && req.body.logpassword) {
     await User.authenticate(req.body.loglogin, req.body.logpassword)
       .then(employee => {
         if (employee) {
@@ -32,7 +32,7 @@ router.post('/', async (req, res, next) => {
     var err = new Error('All fields required.')
     err.status = 400
     return next(err)
-  }
+  }*/
+  return res.redirect('/calendar_employee')
 })
-
 module.exports = router

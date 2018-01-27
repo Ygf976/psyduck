@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Employee = require('./employee_schema')
 const Manager = require('./manager_schema')
-const databaseUrl = process.env.MONGO_URI || 'mongodb://localhost/'
+const databaseUrl = process.env.MONGO_URI || 'mongodb://mongo/test'
 mongoose.Promise = global.Promise
 // Get the list of Managers
 async function getManagers() {
